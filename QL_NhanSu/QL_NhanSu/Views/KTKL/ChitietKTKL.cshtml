@@ -1,0 +1,78 @@
+﻿@model QL_NhanSu.Models.KT_KL
+
+@{
+    ViewBag.Title = "Chi tiết khen thưởng - kỷ luật";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section Header{
+    <div class="page-header">
+        <h1>Xem chi tiết khen thưởng - kỷ luật</h1>
+    </div>
+}
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Mã khen thưởng - kỷ luật:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaNV)
+        </dd>
+
+        <dt>
+            Nhân viên:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NhanVien.MaNV)
+        </dd>
+
+        <dt>
+            Loại:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Loai)
+        </dd>
+
+        <dt>
+            Nội dung:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoiDung)
+        </dd>
+
+        <dt>
+            Ngày:
+        </dt>
+
+        <dd>
+            @Model.Ngay.ToShortDateString()
+        </dd>
+
+        <dt>
+            Giá trị:
+        </dt>
+
+        <dd>
+            @String.Format("{0:0,0}", Model.GiaTri) VNĐ
+        </dd>
+
+        <dt>
+            Trạng thái
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrangThai)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "SuaKTKL", new { id = Model.MaKT_KL }) |
+    @Html.ActionLink("Về trang quản lý khen thưởng - kỷ luật", "KTKL")
+</p>

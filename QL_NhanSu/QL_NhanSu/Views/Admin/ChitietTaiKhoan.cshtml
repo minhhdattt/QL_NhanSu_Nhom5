@@ -1,0 +1,71 @@
+﻿@model QL_NhanSu.Models.QuanLy
+
+@{
+    ViewBag.Title = "Chi tiết tài khoản";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section Header{
+    <div class="page-header">
+        <h1>Xem thông tin tài khoản</h1>
+    </div>
+}
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            Username: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Username)
+        </dd>
+
+        <dt>
+            Mô tả: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fullname)
+        </dd>
+
+        <dt>
+            Là tài khoản admin: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsAdmin)
+        </dd>
+
+        <dt>
+            Loại truy cập: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Allower)
+        </dd>
+
+        <dt>
+            Email: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            Điện thoại: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SDT)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "SuaTaiKhoan", new { id = Model.Username }) |
+    @Html.ActionLink("Về trang chủ quản lý", "Index")
+</p>

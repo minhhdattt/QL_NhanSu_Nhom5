@@ -1,0 +1,117 @@
+﻿@model QL_NhanSu.Models.Luong
+
+@{
+    ViewBag.Title = "Xóa lương";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section Header{
+    <div class="page-header">
+        <h1> Xóa bảng lương</h1>
+    </div>
+}
+
+<h3>Bạn có chắc chắn muốn xóa bảng lương này</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Nhân viên:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NhanVien.HoTen)
+        </dd>
+
+        <dt>
+            Tháng:
+        </dt>
+
+        <dd>
+            @Model.Thang/@Model.Nam
+        </dd>
+
+        <dt>
+            Số ngày công:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Songaycong) ngày
+        </dd>
+
+        <dt>
+            Số lần vào trễ - ra sớm:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Solantresom) lần
+        </dd>
+
+        <dt>
+            Số ngày nghỉ (có phép):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Songaynghicop) ngày
+        </dd>
+
+        <dt>
+            Số ngày nghỉ (không phép):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Songaynghikp) ngày
+        </dd>
+
+        <dt>
+            Số giờ phụ trội:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sogiopt) giờ
+        </dd>
+
+        <dt>
+            Khen thưởng:
+        </dt>
+
+        <dd>
+            @String.Format("{0:0,0}", Model.Khenthuong) VNĐ
+        </dd>
+
+        <dt>
+            Kỷ luật:
+        </dt>
+
+        <dd>
+            @String.Format("{0:0,0}", Model.Kyluat) VNĐ
+        </dd>
+
+        <dt>
+            Tổng tiền lương:
+        </dt>
+
+        <dd>
+            @String.Format("{0:0,0}", Model.GiaTri) VNĐ
+        </dd>
+
+        <dt>
+            Tình trạng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TinhTrang)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
+            @Html.ActionLink("Về trang lương nhân viên", "Lương")
+        </div>
+    }
+</div>

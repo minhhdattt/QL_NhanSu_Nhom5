@@ -1,0 +1,5 @@
+﻿@model IEnumerable<QL_NhanSu.Models.ChucVu>
+@foreach (var item in Model)
+{
+    <li><a href="@Url.Action("TDtheochucvu","NhanSu", new { id = item.MaCV })">@item.TenChucVu</a></li>
+}

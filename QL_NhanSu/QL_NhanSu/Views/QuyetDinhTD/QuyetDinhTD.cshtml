@@ -1,0 +1,117 @@
+﻿@using QL_NhanSu.Models
+@model IEnumerable<QL_NhanSu.Models.QuyetDinhTD>
+
+@{
+    ViewBag.Title = "Quản lý quyết định tuyển dụng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@helper Truncate(string input, int length)
+{
+    if (input.Length < length)
+    {
+        @input
+    }
+    else
+    {
+        @input.Substring(0, length)<text>...</text>
+    }
+}
+
+@section Header{
+    <div class="col-lg-12">
+        <h1 class="page-header">Quyết định tuyển dụng</h1>
+    </div>
+}
+<br />
+
+<div class="row">
+    <div class="col-md-2">
+        @Html.ActionLink("Tạo mới", "ThemQDmoi", "QuyetDinhTD", new { @class = "btn btn-primary" })
+    </div>
+</div>
+<br />
+
+<table id="table_id"
+       class="table table-condensed table-striped table-hover">
+    <thead>
+        <tr>
+            <th>
+                Phòng ban
+            </th>
+            <th>
+                Chức vụ
+            </th>
+            <th>
+                Mô tả
+            </th>
+            <th>
+                Ngày cập nhật
+            </th>
+            <th>
+                Số lượng
+            </th>
+            <th>
+                Số hồ sơ đã nộp
+            </th>
+            <th>
+                Tác vụ
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhongBan.TenPhongBan)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ChucVu.TenChucVu)
+                </td>
+                <td>
+                    @Truncate(item.Mota, 100)
+                </td>
+                <td>
+                    @item.Ngaycapnhat.ToShortDateString()
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoLuong)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoHoSo)
+                </td>
+                <td>
+                    <a>
+                        @Html.ActionLink("Sửa", "SuaQuyetDinh", new { id = item.MaQD })
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </a>|
+                    <a>
+                        @Html.ActionLink("Chi tiết", "ChitietQuyetDinh", new { id = item.MaQD })
+                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#table_id').dataTable();
+        });
+    </script>
+    <script src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/plug-ins/9dcbecd42ad/integration/jqueryui/dataTables.jqueryui.js"></script>
+
+}
+@section css
+{
+    <link rel="stylesheet"
+          href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet"
+          href="https://cdn.datatables.net/plug-ins/9dcbecd42ad/integration/jqueryui/dataTables.jqueryui.css">
+
+}

@@ -1,0 +1,117 @@
+﻿@model QL_NhanSu.Models.DanhSachUV
+
+@{
+    ViewBag.Title = "Chi tiết hồ sơ";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section Header{
+    <div class="page-header">
+        <h1>Xem chi tiết hồ sơ</h1>
+    </div>
+}
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Họ tên:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoSoUngVien.HoTen)
+        </dd>
+
+        <dt>
+            Điện thoại:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoSoUngVien.SDT)
+        </dd>
+
+        <dt>
+            Email:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoSoUngVien.Email)
+        </dd>
+
+        <dt>
+            Trình độ học vấn:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoSoUngVien.TrinhDoHocVan)
+        </dd>
+
+        <dt>
+            Tình trạng sức khỏe:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoSoUngVien.TinhTrangSucKhoe)
+        </dd>
+
+        <dt>
+            Ngoại ngữ:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoSoUngVien.NgoaiNgu)
+        </dd>
+
+        <dt>
+            Ngày nộp:
+        </dt>
+
+        <dd>
+            @Model.NgayNop.ToShortDateString()
+        </dd>
+
+    </dl>
+
+    <h2> Vị trí ứng tuyển </h2>
+    <hr />
+
+    <dl class="dl-horizontal">
+        <dt>
+            Phòng ban:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuyetDinhTD.PhongBan.TenPhongBan)
+        </dd>
+
+        <dt>
+            Chức vụ:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuyetDinhTD.ChucVu.TenChucVu)
+        </dd>
+
+        <dt>
+            Mô tả:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuyetDinhTD.Mota)
+        </dd>
+
+    </dl>
+</div>
+
+<div style="margin-left:300px">
+    <button>
+        @Html.ActionLink("Từ chối", "Decline", new { id = Model.MaQD, id2 = Model.MaUV })
+    </button>
+    <button>
+        @Html.ActionLink("Chấp nhận", "Accept", new { id = Model.MaQD, id2 = Model.MaUV })
+    </button>
+</div>
+
+<p>
+    @Html.ActionLink("Về trang danh sách", "DanhSach")
+</p>

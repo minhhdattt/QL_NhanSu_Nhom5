@@ -1,0 +1,76 @@
+﻿@model QL_NhanSu.Models.QuanLy
+
+@{
+    ViewBag.Title = "Xóa tài khoản";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section Header{
+    <div class="page-header">
+        <h1> Xóa tài khoản</h1>
+    </div>
+}
+<h3>Bạn có chắc chắn muốn xóa tài khoản này</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Username: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Username)
+        </dd>
+
+        <dt>
+            Mô tả: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fullname)
+        </dd>
+
+        <dt>
+            Là tài khoản admin: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsAdmin)
+        </dd>
+
+        <dt>
+            Loại truy cập: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Allower)
+        </dd>
+
+        <dt>
+            Email: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            Điện thoại: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SDT)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
+            @Html.ActionLink("Về trang quản lý tài khoản", "QuanLy")
+        </div>
+    }
+</div>

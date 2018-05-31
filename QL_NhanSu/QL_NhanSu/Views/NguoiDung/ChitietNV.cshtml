@@ -1,0 +1,63 @@
+﻿@model QL_NhanSu.Models.NhanVien
+
+@{
+    ViewBag.Title = "Thông tin tài khoản";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div id="sidebar" style="float:left; margin-left:0;">
+    <div class="box">
+        <h3>Chào @ViewBag.Taikhoan</h3>
+        <ul class="list">
+            <li>
+                <a href="/NguoiDung/ChitietNV/@ViewBag.MaNV">Thông tin tài khoản</a>
+            </li>
+            <li>
+                <a href="/NguoiDung/CCNhanVien/@ViewBag.MaNV">Xem chấm công</a>
+            </li>
+            <li>
+                <a href="/NguoiDung/PTNhanVien/@ViewBag.MaNV">Xem phụ trội</a>
+            </li>
+            <li>
+                <a href="/NguoiDung/KTKLNhanVien/@ViewBag.MaNV">Khen thưởng - Kỷ luật</a>
+            </li>
+            <li>
+                <a href="/NguoiDung/LuongNhanVien/@ViewBag.MaNV">Lương</a>
+            </li>
+            <li>
+                <a href="/NguoiDung/DoiMatKhau/@ViewBag.Taikhoan">Đổi mật khẩu</a>
+            </li>
+            <li>
+                <a href="@Url.Action("DangXuat", "NguoiDung")">Đăng xuất</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div style="margin-left:230px">
+    <h2 style="text-align:center;">Thông tin tài khoản</h2>
+    <hr />
+    <table style="width:660px">
+        <tr>
+            <td>
+                <p style="font-weight:bold">Họ tên: <span style="font-weight:normal">@Html.DisplayFor(model => model.HoTen)</span></p>
+                <p style="font-weight:bold">Giới tính: <span style="font-weight:normal">@Html.DisplayFor(model => model.GioiTinh)</span></p>
+                <p style="font-weight:bold">Ngày sinh: <span style="font-weight:normal">@Model.NgaySinh.ToShortDateString()</span></p>
+                <p style="font-weight:bold">CMND: <span style="font-weight:normal">@Html.DisplayFor(model => model.CMND)</span></p>
+                <p style="font-weight:bold">Địa chỉ: <span style="font-weight:normal">@Html.DisplayFor(model => model.DiaChi)</span></p>
+                <p style="font-weight:bold">Điện thoại: <span style="font-weight:normal">@Html.DisplayFor(model => model.SDT)</span></p>
+                <p style="font-weight:bold">Email: <span style="font-weight:normal">@Html.DisplayFor(model => model.Email)</span></p>
+                <p style="font-weight:bold">Trình độ học vấn: <span style="font-weight:normal">@Html.DisplayFor(model => model.TrinhDoHocVan)</span></p>
+                <p style="font-weight:bold">Tình trạng sức khỏe: <span style="font-weight:normal">@Html.DisplayFor(model => model.TinhTrangSucKhoe)</span></p>
+                <p style="font-weight:bold">Ngoại ngữ: <span style="font-weight:normal">@Html.DisplayFor(model => model.NgoaiNgu)</span></p>
+                <p style="font-weight:bold">Ngày vào làm: <span style="font-weight:normal">@Model.NgayVaoLam.ToShortDateString()</span></p>
+                <p style="font-weight:bold">Được tuyển theo quyết định: <span style="font-weight:normal">@Html.DisplayFor(model => model.MaQD)</span></p>
+                <p style="font-weight:bold">Tình trạng: <span style="font-weight:normal; color:red">@Html.DisplayFor(model => model.TinhTrang)</span></p>
+            </td>
+        </tr>
+    </table>
+    <p>
+        @Html.ActionLink("Sửa thông tin", "SuaNhanVien", new { id = Model.MaNV }) |
+        @Html.ActionLink("Về trang chủ người dùng", "Index", "NguoiDung")
+    </p>
+</div>
+

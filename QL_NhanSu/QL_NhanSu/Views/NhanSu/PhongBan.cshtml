@@ -1,0 +1,5 @@
+﻿@model IEnumerable<QL_NhanSu.Models.PhongBan>
+@foreach(var item in Model)
+{
+    <li><a href="@Url.Action("TDtheophongban","NhanSu", new { id = item.MaPB })">@item.TenPhongBan</a></li>
+}

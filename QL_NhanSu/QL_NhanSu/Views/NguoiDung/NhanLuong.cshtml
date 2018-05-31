@@ -1,0 +1,66 @@
+﻿@model QL_NhanSu.Models.Luong
+
+@{
+    ViewBag.Title = "Nhận lương";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div id="sidebar" style="float:left; margin-left:0;">
+    <div class="box">
+        <h3>Chào @ViewBag.Taikhoan</h3>
+        <ul class="list">
+            <li>
+                <a href="/NguoiDung/ChitietNV/@ViewBag.MaNV">Thông tin tài khoản</a>
+            </li>
+            <li>
+                <a href="/NguoiDung/CCNhanVien/@ViewBag.MaNV">Xem chấm công</a>
+            </li>
+            <li>
+                <a href="/NguoiDung/PTNhanVien/@ViewBag.MaNV">Xem phụ trội</a>
+            </li>
+            <li>
+                <a href="/NguoiDung/KTKLNhanVien/@ViewBag.MaNV">Khen thưởng - Kỷ luật</a>
+            </li>
+            <li>
+                <a href="/NguoiDung/LuongNhanVien/@ViewBag.MaNV">Lương</a>
+            </li>
+            <li>
+                <a href="/NguoiDung/DoiMatKhau/@ViewBag.Taikhoan">Đổi mật khẩu</a>
+            </li>
+            <li>
+                <a href="@Url.Action("DangXuat", "NguoiDung")">Đăng xuất</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div style="margin-left:230px">
+    <h2 style="text-align:center;">Nhận lương</h2>
+    <hr />
+    <h3>Xin kiểm tra kĩ trước khi nhận lương</h3>
+    <table style="width:660px">
+        <tr>
+            <td>
+                <p style="font-weight:bold">Nhân viên: <span style="font-weight:normal">@Html.DisplayFor(model => model.NhanVien.HoTen)</span></p>
+                <p style="font-weight:bold">Tháng: <span style="font-weight:normal">@Model.Thang/@Model.Nam</span></p>
+                <p style="font-weight:bold">Số ngày công: <span style="font-weight:normal">@Html.DisplayFor(model => model.Songaycong) ngày</span></p>
+                <p style="font-weight:bold">Số lần vào trễ - ra sớm: <span style="font-weight:normal">@Html.DisplayFor(model => model.Solantresom) lần</span></p>
+                <p style="font-weight:bold">Số ngày nghỉ (có phép): <span style="font-weight:normal">@Html.DisplayFor(model => model.Songaynghicop) ngày</span></p>
+                <p style="font-weight:bold">Số ngày nghỉ (có phép): <span style="font-weight:normal">@Html.DisplayFor(model => model.Songaynghikp) ngày</span></p>
+                <p style="font-weight:bold">Số giờ phụ trội: <span style="font-weight:normal">@Html.DisplayFor(model => model.Sogiopt) giờ</span></p>
+                <p style="font-weight:bold">Khen thưởng: <span style="font-weight:normal">@String.Format("{0:0,0}", Model.Khenthuong) VNĐ</span></p>
+                <p style="font-weight:bold">Kỷ luật: <span style="font-weight:normal">@String.Format("{0:0,0}", Model.Kyluat) VNĐ</span></p>
+                <p style="font-weight:bold">Tổng lương: <span style="font-weight:normal">@String.Format("{0:0,0}", Model.GiaTri) VNĐ</span></p>
+            </td>
+        </tr>
+    </table>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Nhận lương" class="btn btn-default" /> |
+            <a href="/NguoiDung/LuongNhanVien/@ViewBag.MaNV">Trở về</a>
+        </div>
+    }
+</div>

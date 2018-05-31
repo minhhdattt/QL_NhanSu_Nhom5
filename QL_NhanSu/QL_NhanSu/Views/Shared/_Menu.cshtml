@@ -1,0 +1,96 @@
+﻿
+<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/NhanSu/Index">Về trang chủ Đông Á</a>
+    </div>
+    <!-- /.navbar-header -->
+    <ul class="nav navbar-top-links navbar-right">
+        <!-- /.dropdown -->
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="/Admin/Index">
+                @Html.Action("AdminPartial", "Admin")
+                <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-user">
+                <li>
+                    <a href="/Admin/ChitietTaiKhoan/@Html.Action("AdminPartial", "Admin")"><i class="fa fa-user fa-fw"></i>Thông tin tài khoản</a>
+                </li>
+                <li>
+                    <a href="/Admin/DoiMatKhau/@Html.Action("AdminPartial", "Admin")"><i class="fa fa-gear fa-fw"></i> Đổi mật khẩu</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="/Admin/Logout"><i class="fa fa-sign-out fa-fw"></i> Đăng xuất</a>
+                </li>
+            </ul>
+            <!-- /.dropdown-user -->
+        </li>
+        <!-- /.dropdown -->
+    </ul>
+    <!-- /.navbar-top-links -->
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <ul class="nav" id="side-menu">
+                <li class="sidebar-search">
+                    <div class="input-group custom-search-form">
+                        <input type="text" class="form-control" placeholder="Search...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                    <!-- /input-group -->
+                </li>
+
+                <li>
+                    <a href="/UngVien/DanhSach"><i class="fa fa-edit fa-fw"></i> Danh sách ứng viên</a>
+                </li>
+                <li>
+                    <a href="/QuyetDinhTD/QuyetDinhTD"><i class="fa fa-edit fa-fw"></i> Quyết định tuyển dụng</a>
+                </li>
+                <li>
+                    <a href="/NhanVien/NhanVien"><i class="fa fa-edit fa-fw"></i> NhânViên</a>
+                    @*<ul>
+                <li>
+                    <a href="#"><i class="fa fa-edit fa-fw"></i> Lương</a>
+                </li>
+            </ul>*@
+                </li>
+                <li>
+                    <a href="/HopDong/HopDong"><i class="fa fa-files-o fa-fw"></i> Hợp đồng tuyển dụng</a>
+                </li>
+                <li>
+                    <a href="/ChamCong/ChamCong"><i class="fa fa-table fa-fw"></i> Chấm công</a>
+                </li>
+                <li>
+                    <a href="/PhuTroi/PhuTroi"><i class="fa fa-table fa-fw"></i> Phụ trội</a>
+                </li>
+                <li>
+                    <a href="/KTKL/KTKL"><i class="fa fa-files-o fa-fw"></i> Khen thưởng - Kỉ luật</a>
+                </li>
+                <li>
+                    <a href="/Luong/Luong"><i class="fa fa-edit fa-fw"></i> Lương</a>
+                </li>
+                <li>
+                    <a href="/ChucVu/ChucVu"><i class="fa fa-sitemap fa-fw"></i> Chức vụ</a>
+                </li>
+                <li>
+                    <a href="/PhongBan/PhongBan"><i class="fa fa-sitemap fa-fw"></i> Phòng ban</a>
+                </li>
+                <li>
+                    <a href="/Admin/QuanLy"><i class="fa fa-wrench fa-fw"></i> Quản lý tài khoản</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.sidebar-collapse -->
+    </div>
+    <!-- /.navbar-static-side -->
+</nav>
+

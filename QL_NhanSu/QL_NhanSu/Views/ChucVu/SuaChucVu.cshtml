@@ -1,0 +1,79 @@
+﻿@model QL_NhanSu.Models.ChucVu
+
+@{
+    ViewBag.Title = "Sửa chức vụ";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section Header{
+    <div class="page-header">
+        <h1>Sửa chức vụ</h1>
+    </div>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.MaCV)
+
+        <div class="form-group">
+            <label class="control-label col-md-3">Mã phòng ban: </label>
+            <div class="col-md-6">
+                <div style="font:18px; padding: 5px 0 0 5px">
+                    @Model.MaCV
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">Tên phòng ban: </label>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.TenChucVu, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TenChucVu, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">Thời gian thử việc: </label>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.ThoiGianThuViec, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ThoiGianThuViec, "", new { @class = "text-danger" })
+                (ngày)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">Mức lương thử việc: </label>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.MucLuongThuViec, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MucLuongThuViec, "", new { @class = "text-danger" })
+                (VNĐ/Ngày)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">Mức lương chính thức: </label>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.MucLuongCT, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MucLuongCT, "", new { @class = "text-danger" })
+                (VNĐ/Ngày)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">Phụ cấp (nếu có): </label>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.PhuCap, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PhuCap, "", new { @class = "text-danger" })
+                (VNĐ/Ngày)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-6">
+                <input type="submit" value="Lưu" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+<div>
+    @Html.ActionLink("Về trang quản lý chức vụ", "ChucVu")
+</div>

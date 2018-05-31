@@ -1,0 +1,77 @@
+﻿@model IEnumerable<QL_NhanSu.Models.QuyetDinhTD>
+@{
+    ViewBag.Title = "TDtheophongban";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div id="sidebar" style="float:left; margin-left:0;">
+    <div class="box">
+        <h3>Phòng ban</h3>
+        <ul class="list">
+            @Html.Action("PhongBan", "NhanSu")
+        </ul>
+    </div>
+    <div class="box">
+        <h3>Chức vụ</h3>
+        <ul class="list">
+            @Html.Action("ChucVu", "NhanSu")
+        </ul>
+    </div>
+</div>
+<div style="margin-left:230px">
+    <h2 style="text-align:center">Tuyển dụng theo phòng ban</h2>
+    <table class="table table-hover" style="width:660px">
+        <thead>
+            <tr>
+                <th scope="col">Phòng ban</th>
+                <th scope="col">Chức vụ</th>
+                <th scope="col">Mô tả</th>
+                <th scope="col">Ngày cập nhật</th>
+                <th scope="col">Trạng thái</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        @foreach (var qd in Model)
+        {
+            <tr>
+                <th scope="col">
+                    @qd.PhongBan.TenPhongBan
+                </th>
+                <th scope="col">
+                    @qd.ChucVu.TenChucVu
+                </th>
+                <th scope="col">
+                    @qd.Mota
+                </th>
+                <th scope="col">
+                    @qd.Ngaycapnhat.ToShortDateString()
+                </th>
+                <th scope="col" style="color:red">
+                    @qd.TrangThai
+                </th>
+                <th scope="col">
+                    <a href="@Url.Action("Details","NhanSu", new { id = qd.MaQD })">Chi tiết</a>
+                </th>
+            </tr>
+        }
+    </table>
+    @*<div>
+        <ul class="pagination">
+            @Html.PagedListPager(Model, page => Url.Action("TuyenDung", new { page = page }))
+        </ul>
+    </div>*@
+    @*<div class="MenuTrang">
+            Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
+            @Html.PagedListPager(Model, page => Url.Action("TuyenDung", new { page = page }))
+        </div>
+        <style>
+            .MenuTrang {
+                float: right;
+            }
+
+                .MenuTrang li {
+                    display: inline;
+                }
+        </style>*@
+</div>
+

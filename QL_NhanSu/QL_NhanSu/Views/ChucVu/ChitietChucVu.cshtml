@@ -1,0 +1,57 @@
+﻿@model QL_NhanSu.Models.ChucVu
+
+@{
+    ViewBag.Title = "Chi tiết chức vụ";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section Header{
+    <div class="page-header">
+        <h1>Xem chi tiết chức vụ</h1>
+    </div>
+}
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Mã chức vụ:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaCV)
+        </dd>
+        <dt>
+            Tên chức vụ:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TenChucVu)
+        </dd>
+        <dt>
+            Thời gian thử việc:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ThoiGianThuViec) (ngày)
+        </dd>
+        <dt>
+            Mức lương thử việc:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MucLuongThuViec) VNĐ/Ngày
+        </dd>
+        <dt>
+            Mức lương chính thức:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MucLuongCT) VNĐ/Ngày
+        </dd>
+        <dt>
+            Phụ cấp (nếu có):
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PhuCap) VNĐ/Ngày
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "SuaChucVu", new { id = Model.MaCV }) |
+    @Html.ActionLink("Về trang quản lý Chức vụ", "ChucVu")
+</p>

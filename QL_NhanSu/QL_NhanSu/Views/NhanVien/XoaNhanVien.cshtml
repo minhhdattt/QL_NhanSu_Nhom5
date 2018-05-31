@@ -1,0 +1,155 @@
+﻿@model QL_NhanSu.Models.NhanVien
+
+@{
+    ViewBag.Title = "Xóa nhân viên";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section Header{
+    <div class="page-header">
+        <h1> Xóa nhân viên </h1>
+    </div>
+}
+
+<h3>Bạn quyết định xóa nhân viên này?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Mã nhân viên:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaNV)
+        </dd>
+        <dt>
+            Họ tên:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoTen)
+        </dd>
+
+        <dt>
+            Giới tính:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GioiTinh)
+        </dd>
+
+        <dt>
+            Ngày sinh:
+        </dt>
+
+        <dd>
+            @Model.NgaySinh.ToShortDateString()
+        </dd>
+
+        <dt>
+            CMND:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CMND)
+        </dd>
+
+        <dt>
+            Địa chỉ:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiaChi)
+        </dd>
+
+        <dt>
+            Điện thoại:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SDT)
+        </dd>
+
+        <dt>
+            Email:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            Trình độ học vấn:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrinhDoHocVan)
+        </dd>
+
+        <dt>
+            Tình trạng sức khỏe:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TinhTrangSucKhoe)
+        </dd>
+
+        <dt>
+            Ngoại ngữ:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgoaiNgu)
+        </dd>
+
+        <dt>
+            Ngày vào làm:
+        </dt>
+
+        <dd>
+            @Model.NgayVaoLam.ToShortDateString()
+        </dd>
+
+        <dt>
+            Mã quyết định:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaQD)
+        </dd>
+
+        <dt>
+            Phòng ban:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuyetDinhTD.PhongBan.TenPhongBan)
+        </dd>
+
+        <dt>
+            Chức vụ:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuyetDinhTD.ChucVu.TenChucVu)
+        </dd>
+
+        <dt>
+            Nhân viên:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TinhTrang)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("về trang quản lý nhân viên", "NhanVien")
+        </div>
+    }
+</div>

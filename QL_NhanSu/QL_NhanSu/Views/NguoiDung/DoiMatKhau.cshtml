@@ -1,0 +1,102 @@
+﻿@using QL_NhanSu.Models
+@model QL_NhanSu.Models.TaiKhoan
+@{
+    ViewBag.Title = "Đổi mật khẩu";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div id="sidebar" style="float:left; margin-left:0;">
+    <div class="box">
+        <h3>Chào @ViewBag.Taikhoan</h3>
+        @{
+            TaiKhoan tk = (TaiKhoan)Session["Taikhoan"];
+            if (tk.MaNV != null)
+            {
+                <ul class="list">
+                    <li>
+                        <a href="/NguoiDung/ChitietNV/@tk.MaNV">Thông tin tài khoản</a>
+                    </li>
+                    <li>
+                        <a href="/NguoiDung/CCNhanVien/@tk.MaNV">Xem chấm công</a>
+                    </li>
+                    <li>
+                        <a href="/NguoiDung/PTNhanVien/@tk.MaNV">Xem phụ trội</a>
+                    </li>
+                    <li>
+                        <a href="/NguoiDung/KTKLNhanVien/@tk.MaNV">Khen thưởng - Kỷ luật</a>
+                    </li>
+                    <li>
+                        <a href="/NguoiDung/LuongNhanVien/@tk.MaNV">Lương</a>
+                    </li>
+                    <li>
+                        <a href="/NguoiDung/DoiMatKhau/@tk.Username">Đổi mật khẩu</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("DangXuat", "NguoiDung")">Đăng xuất</a>
+                    </li>
+                </ul>
+            }
+            else
+            {
+                <ul class="list">
+                    <li>
+                        <a href="/NguoiDung/ChitietUV/@tk.MaUV">Thông tin tài khoản</a>
+                    </li>
+                    <li>
+                        <a href="/NguoiDung/DanhSachQD/@tk.MaUV">Quyết định đã nộp</a>
+                    </li>
+                    <li>
+                        <a href="/NguoiDung/DoiMatKhau/@tk.Username">Đổi mật khẩu</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("DangXuat", "NguoiDung")">Đăng xuất</a>
+                    </li>
+                </ul>
+            }
+        }
+    </div>
+</div>
+<div style="margin-left:230px">
+    <h2 style="text-align:center;">Đổi mật khẩu</h2>
+    <hr />
+    <table align="center">
+        @using (Html.BeginForm())
+        {
+
+            @Html.ValidationSummary(true)
+            <tr><td><p style="color:red; text-align:center">@ViewBag.ThongBao</p></td></tr>
+            <tr style="height:40px">
+                <td>Mật khẩu cũ: </td>
+                <td>
+                    @Html.Password("matkhaucu")
+                    @ViewData["Loi1"]
+                </td>
+            </tr>
+            <tr style="height:40px">
+                <td>Mật khẩu mới: </td>
+                <td>
+                    @Html.Password("matkhaumoi")
+                    @ViewData["Loi2"]
+                </td>
+            </tr>
+            <tr style="height:40px">
+                <td>Nhập lại mật khẩu mới: </td>
+                <td>
+                    @Html.Password("matkhaunhaplai")
+                    @ViewData["Loi3"]
+                </td>
+            </tr>
+
+            <tr style="height:40px">
+                <td></td>
+                <td>
+                    <input type="submit" value="Đổi mật khẩu" />
+                </td>
+            </tr>
+        }
+    </table>
+    <p>
+        @Html.ActionLink("Về trang chủ người dùng", "Index", "NguoiDung")
+    </p>
+</div>
+

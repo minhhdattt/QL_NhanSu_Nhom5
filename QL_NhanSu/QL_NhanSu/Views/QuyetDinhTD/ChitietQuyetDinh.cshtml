@@ -1,0 +1,77 @@
+﻿@model QL_NhanSu.Models.QuyetDinhTD
+
+@{
+    ViewBag.Title = "Chi tiết Quyết Định";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section Header{
+    <div class="page-header">
+        <h1>Xem chi tiết quyết định</h1>
+    </div>
+}
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Mã quyết định:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaQD)
+        </dd>
+
+        <dt>
+            Phòng ban:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhongBan.TenPhongBan)
+        </dd>
+
+        <dt>
+            Chức vụ:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChucVu.TenChucVu)
+        </dd>
+
+        <dt>
+            Mô tả :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mota)
+        </dd>
+
+        <dt>
+            Thời gian thử việc:
+        </dt>
+
+        <dd>
+            @Model.ChucVu.ThoiGianThuViec ngày
+        </dd>
+
+        <dt>
+            Ngày cập nhật:
+        </dt>
+
+        <dd>
+            @Model.Ngaycapnhat.ToShortDateString()
+        </dd>
+
+        <dt>
+            Trạng thái:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrangThai)
+        </dd>
+    </dl>
+</div>
+
+<p>
+    @Html.ActionLink("Sửa", "SuaQuyetDinh", new { id = Model.MaQD }) |
+    @Html.ActionLink("Về trang quản lý quyết định", "QuyetDinhTD")
+</p>

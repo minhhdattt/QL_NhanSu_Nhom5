@@ -1,0 +1,40 @@
+﻿@model QL_NhanSu.Models.PhongBan
+
+@{
+    ViewBag.Title = "Xóa phòng ban";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section Header{
+    <div class="page-header">
+        <h1> Xóa phòng ban</h1>
+    </div>
+}
+
+<h3>Bạn quyết định xóa phòng ban này?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Mã phòng ban:
+        </dt>
+        <dd>
+            @ViewBag.MaPB
+        </dd>
+        <dt>
+            Tên phòng ban:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TenPhongBan)
+        </dd>
+    </dl>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Về trang quản lý phòng ban", "PhongBan")
+        </div>
+    }
+</div>

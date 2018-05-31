@@ -1,0 +1,50 @@
+﻿@model QL_NhanSu.Models.QuanLy
+@{
+    ViewBag.Title = "Đổi mật khẩu";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section Header{
+    <div class="page-header">
+        <h1>Đổi mật khẩu tài khoản</h1>
+    </div>
+}
+
+<table align="center" style="margin-left:300px;">
+    @using (Html.BeginForm())
+    {
+        
+        @Html.ValidationSummary(true)
+        <tr style="color:red; text-align:center">@ViewBag.ThongBao</tr>
+        <tr style="height:40px">
+            <td>Mật khẩu cũ: </td>
+            <td>
+                @Html.TextBox("matkhaucu")
+                @ViewData["Loi1"]
+            </td>
+        </tr>
+        <tr style="height:40px">
+            <td>Mật khẩu mới: </td>
+            <td>
+                @Html.TextBox("matkhaumoi")
+                @ViewData["Loi2"]
+            </td>
+        </tr>
+        <tr style="height:40px">
+            <td>Nhập lại mật khẩu mới: </td>
+            <td>
+                @Html.Password("matkhaunhaplai")
+                @ViewData["Loi3"]
+            </td>
+        </tr>
+
+        <tr style="height:40px">
+            <td></td>
+            <td>
+                <input type="submit" value="Đổi mật khẩu" />
+            </td>
+        </tr>
+    }
+</table>
+
+

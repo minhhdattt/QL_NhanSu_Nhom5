@@ -1,0 +1,65 @@
+﻿@using QL_NhanSu.Models
+<style type="text/css">
+    #Nophoso a {
+        clear: both;
+        background-color: red;
+        color: white;
+        width: 120px;
+        height: 35px;
+        display: block;
+        float: right;
+        text-align: center;
+        padding-top: 5px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+        #Nophoso a:hover {
+            background-color: gray;
+            color: red;
+        }
+</style>
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<div id="sidebar" style="float:left; margin-left:0;">
+    <div class="box">
+        <h3>Phòng ban</h3>
+        <ul class="list">
+            @Html.Action("PhongBan", "NhanSu")
+        </ul>
+    </div>
+    <div class="box">
+        <h3>Chức vụ</h3>
+        <ul class="list">
+            @Html.Action("ChucVu", "NhanSu")
+        </ul>
+    </div>
+</div>
+<div style="margin-left:230px">
+    <h2 style="text-align:center;">Thông tin chi tiết tuyển dụng</h2>
+    <table style="width:660px">
+        <tr>
+            <td>
+                <h4 style="font-weight:bold;">Phòng ban: @Model.PhongBan.TenPhongBan</h4>
+                <h4 style="font-weight:bold;">Chức vụ: @Model.ChucVu.TenChucVu</h4>
+                <p style="text-align:justify"><span style="font-weight:bold">Mô tả: </span>@Model.Mota</p>
+                <p style="font-weight:bold"><span style="font-weight:bold">Thời gian thử việc: </span><span style="color:red;"> @Model.ChucVu.ThoiGianThuViec Ngày</span></p>
+                <p style="text-align:justify"><span style="font-weight:bold">Ngày cập nhật: </span>@Model.Ngaycapnhat.ToShortDateString()</p>
+                <p style="text-align:justify"><span style="font-weight:bold">Số lượng: </span><span style="color:red; font-size:16px"> @Model.SoLuong</span></p>
+                <p style="text-align:justify"><span style="font-weight:bold">Số hồ sơ đã nộp: </span><span style="color:red; font-size:16px"> @Model.SoHoSo hồ sơ</span></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="Nophoso">
+                    <a href="@Url.Action("NopHoSo", "NhanSu",new { id = Model.MaQD })">
+                        Nộp hồ sơ
+                    </a>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+

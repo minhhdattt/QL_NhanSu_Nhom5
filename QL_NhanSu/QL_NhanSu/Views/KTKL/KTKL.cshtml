@@ -1,0 +1,102 @@
+﻿@model IEnumerable<QL_NhanSu.Models.KT_KL>
+
+@{
+    ViewBag.Title = "Khen thưởng - Kỷ luật";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section Header{
+    <div class="col-lg-12">
+        <h1 class="page-header">Khen thưởng - Kỷ luật</h1>
+    </div>
+}
+<br />
+
+<div class="row">
+    <div class="col-md-2">
+        @Html.ActionLink("Tạo mới", "ThemKTKLmoi", "KTKL", new { @class = "btn btn-primary" })
+    </div>
+</div>
+<br />
+
+<table id="table_id"
+       class="table table-condensed table-striped table-hover">
+    <thead>
+        <tr>
+            <th>
+                Nhân viên
+            </th>
+            <th>
+                Loại
+            </th>
+            <th>
+                Nội dung
+            </th>
+            <th>
+                Ngày
+            </th>
+            <th>
+                Giá trị
+            </th>
+            <th>
+                Trạng thái
+            </th>
+            <th>
+                Tác vụ
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NhanVien.HoTen)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Loai)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NoiDung)
+                </td>
+                <td>
+                    @item.Ngay.ToShortDateString()
+                </td>
+                <td>
+                    @String.Format("{0:0,0}", item.GiaTri) VNĐ
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TrangThai)
+                </td>
+                <td>
+                    @Html.ActionLink("Sửa", "SuaKTKL", new { id = item.MaKT_KL })
+                    <i class="fa fa-pencil" aria-hidden="true"></i>|
+                    @Html.ActionLink("Chi tiết", "ChitietKTKL", new { id = item.MaKT_KL })
+                    <i class="fa fa-info-circle" aria-hidden="true"></i>|
+                    @Html.ActionLink("Xóa", "XoaKTKL", new { id = item.MaKT_KL })
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#table_id').dataTable();
+        });
+    </script>
+    <script src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/plug-ins/9dcbecd42ad/integration/jqueryui/dataTables.jqueryui.js"></script>
+
+}
+@section css
+{
+    <link rel="stylesheet"
+          href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet"
+          href="https://cdn.datatables.net/plug-ins/9dcbecd42ad/integration/jqueryui/dataTables.jqueryui.css">
+
+}

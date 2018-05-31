@@ -1,0 +1,50 @@
+﻿@model QL_NhanSu.Models.DanhSachUV
+
+@{
+    ViewBag.Title = "Chi tiết quyết định";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div id="sidebar" style="float:left; margin-left:0;">
+    <div class="box">
+        <h3>Chào @ViewBag.Taikhoan</h3>
+        <ul class="list">
+            <li>
+                <a href="/NguoiDung/ChitietUV/@ViewBag.MaUV">Thông tin tài khoản</a>
+            </li>
+            <li>
+                <a href="/NguoiDung/DanhSachQD/@ViewBag.MaUV">Quyết định đã nộp</a>
+            </li>
+            <li>
+                <a href="/NguoiDung/DoiMatKhau/@ViewBag.Taikhoan">Đổi mật khẩu</a>
+            </li>
+            <li>
+                <a href="@Url.Action("DangXuat", "NguoiDung")">Đăng xuất</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div style="margin-left:230px">
+    <h2 style="text-align:center;">Chi tiết quyết định</h2>
+    <hr />
+    <table style="width:660px">
+        <tr>
+            <td>
+                <p style="font-weight:bold">Phòng ban: <span style="font-weight:normal">@Html.DisplayFor(model => model.QuyetDinhTD.PhongBan.TenPhongBan)</span></p>
+                <p style="font-weight:bold">Chức vụ: <span style="font-weight:normal">@Html.DisplayFor(model => model.QuyetDinhTD.ChucVu.TenChucVu)</span></p>
+                <p style="font-weight:bold">Mô tả: <span style="font-weight:normal">@Model.QuyetDinhTD.Mota</span></p>
+                <p style="font-weight:bold">Thời gian thử việc: <span style="font-weight:normal">@Model.QuyetDinhTD.ChucVu.ThoiGianThuViec Ngày</span></p>
+                <p style="font-weight:bold">Mức lương thử việc: <span style="font-weight:normal">@String.Format("{0:0,0}", Model.QuyetDinhTD.ChucVu.MucLuongThuViec) VNĐ</span></p>
+                <p style="font-weight:bold">Mức lương chính thức: <span style="font-weight:normal">@String.Format("{0:0,0}", Model.QuyetDinhTD.ChucVu.MucLuongCT) VNĐ</span></p>
+                <p style="font-weight:bold">Phụ cấp: <span style="font-weight:normal">@String.Format("{0:0,0}", Model.QuyetDinhTD.ChucVu.PhuCap) VNĐ</span></p>
+                <p style="font-weight:bold">Trạng thái quyết định: <span style="font-weight:normal">@Html.DisplayFor(model => model.QuyetDinhTD.TrangThai)</span></p>
+                <p style="font-weight:bold">Ngày nộp: <span style="font-weight:normal">@Html.DisplayFor(model => model.NgayNop)</span></p>
+                <p style="font-weight:bold">Trạng thái: <span style="font-weight:normal">@Html.DisplayFor(model => model.Trangthai)</span></p>
+            </td>
+        </tr>
+    </table>
+    <p>
+        @Html.ActionLink("Xóa hồ sơ thuộc quyết định này", "XoaHoSo", new { id = Model.MaQD, id2 = Model.MaUV }) |
+        <a href="/NguoiDung/DanhSachQD/@ViewBag.MaUV">Về danh sách</a>
+    </p>
+</div>

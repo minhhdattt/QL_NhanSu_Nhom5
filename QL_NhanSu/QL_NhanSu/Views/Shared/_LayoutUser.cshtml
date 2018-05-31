@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html>
+@using QL_NhanSu.Models
+@*@model IEnumerable<QL_NhanSu.Models.TaiKhoan>*@
+
+
+<html>
+<head>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <title>Công ty sơn Đông Á</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.dropotron-1.0.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.slidertron-1.1.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#menu > ul').dropotron({
+                mode: 'fade',
+                globalOffsetY: 11,
+                offsetY: -15
+            });
+            $('#slider').slidertron({
+                viewerSelector: '.viewer',
+                indicatorSelector: '.indicator span',
+                reelSelector: '.reel',
+                slidesSelector: '.slide',
+                speed: 'slow',
+                advanceDelay: 4000
+            });
+        });</script>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="header">
+            <div id="logo">
+                <h1><a href="/NhanSu/Index"><img src="~/images/logo.png" /></a></h1>
+            </div>
+            <div id="slogan">
+                <h2>Thiết kế bởi sinh viên Huflit</h2>
+            </div>
+        </div>
+        <div id="menu">
+            <ul>
+                <li>
+                    <a href="@Url.Action("Index","NhanSu")"><img src="~/images/home.png" width="40" /></a>
+                </li>
+                <li>
+                    @Html.ActionLink("Quản lý", "Index", "Admin")
+                </li>
+                @if (Session["Taikhoan"] == null || Session["Taikhoan"].ToString() == "")
+                {
+                    <li>
+                        <span>@Html.ActionLink("Đăng nhập", "DangNhap", "NguoiDung")</span>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <span class="opener">@Html.Action("NguoidungPartial", "NguoiDung")</span>
+                        @{
+                            TaiKhoan tk = (TaiKhoan)Session["Taikhoan"];
+                            if (tk.MaNV != null)
+                            {
+                                <ul>
+                                    <li>
+                                        <span><a href="/NguoiDung/ChitietNV/@tk.MaNV">Thông tin tài khoản</a></span>
+                                    </li>
+                                    <li>
+                                        <span><a href="/NguoiDung/CCNhanVien/@tk.MaNV">Xem chấm công</a></span>
+                                    </li>
+                                    <li>
+                                        <span><a href="/NguoiDung/PTNhanVien/@tk.MaNV">Xem phụ trội</a></span>
+                                    </li>
+                                    <li>
+                                        <span><a href="/NguoiDung/KTKLNhanVien/@tk.MaNV">Khen thưởng - Kỷ luật</a></span>
+                                    </li>
+                                    <li>
+                                        <span><a href="/NguoiDung/LuongNhanVien/@tk.MaNV">Lương</a></span>
+                                    </li>
+                                    <li>
+                                        <span><a href="/NguoiDung/DoiMatKhau/@tk.Username">Đổi mật khẩu</a></span>
+                                    </li>
+                                    <li>
+                                        <span><a href="@Url.Action("DangXuat", "NguoiDung")">Đăng xuất</a></span>
+                                    </li>
+                                </ul>
+                            }
+                            else
+                            {
+                                <ul>
+                                    <li>
+                                        <span><a href="/NguoiDung/ChitietUV/@tk.MaUV">Thông tin tài khoản</a></span>
+                                    </li>
+                                    <li>
+                                        <span><a href="/NguoiDung/DanhSachQD/@tk.MaUV">Quyết định đã nộp</a></span>
+                                    </li>
+                                    <li>
+                                        <span><a href="/NguoiDung/DoiMatKhau/@tk.Username">Đổi mật khẩu</a></span>
+                                    </li>
+                                    <li>
+                                        <span><a href="@Url.Action("DangXuat", "NguoiDung")">Đăng xuất</a></span>
+                                    </li>
+                                </ul>
+                            }
+                        }
+
+                    </li>
+                }
+                <li class="last" style="float:right">
+                    @using (@Html.BeginForm("Search", "NhanSu", FormMethod.Get))
+                    {
+                        <form class="form-inline my-2 my-lg-0">
+                            <input type="text" name="searchStr" class="form-control mr-sm-2" placeholder="Tìm kiếm..." value="@ViewBag.searchStr" />
+                            @*<button class="btn btn-secondary my-2 my-sm-0" type="submit">Tìm</button>*@
+                        </form>
+
+                    }
+
+                </li>
+            </ul>
+            <br class="clearfix" />
+        </div>
+        <div id="slider">
+            <div class="viewer">
+                <div class="reel">
+                    <div class="slide">
+                        <img src="~/images/slide01.jpg" alt="" width="870" height="230" />
+                    </div>
+                    <div class="slide">
+                        <img src="~/images/slide02.jpg" alt="" width="870" height="230" />
+                    </div>
+                    <div class="slide">
+                        <img src="~/images/slide03.jpg" alt="" width="870" height="230" />
+                    </div>
+                    <div class="slide">
+                        <img src="~/images/slide04.jpg" alt="" width="870" height="230" />
+                    </div>
+                    <div class="slide">
+                        <img src="~/images/slide05.jpg" alt="" width="870" height="230" />
+                    </div>
+                </div>
+            </div>
+            <div class="indicator">
+                <span>1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+                <span>5</span>
+            </div>
+        </div>
+        <div id="page" style="height: 1200px; width: 980px;">
+            @RenderBody()
+        </div>
+
+    </div>
+    <div id="footer">
+        <div id="page-bottom" style="margin: 0 auto 0 auto;">
+            <div id="page-bottom-content">
+                <h3>CÔNG TY CỔ PHẦN SƠN ĐÔNG Á</h3>
+                <p>
+                    Địa chỉ: 155 Sư Vạn Hạnh (nối dài), phường 13, Quận 10, Thành phố Hồ Chí Minh.
+                </p>
+            </div>
+            <div id="page-bottom-sidebar">
+                <h3>HOTLINE:</h3>
+                <ul class="list">
+                    <li>097.626.9999</li>
+                </ul>
+            </div>
+            <br class="clearfix" />
+        </div>
+        &copy; Untitled. All rights reserved. Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.
+    </div>
+    <div>
+
+    </div>
+</body>
+</html>

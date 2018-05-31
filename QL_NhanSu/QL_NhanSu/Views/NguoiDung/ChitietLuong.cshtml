@@ -1,0 +1,129 @@
+﻿@model QL_NhanSu.Models.Luong
+
+@{
+    ViewBag.Title = "ChitietLuong";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div id="sidebar" style="float:left; margin-left:0;">
+    <div class="box">
+        <h3>Chào @ViewBag.Taikhoan</h3>
+        <ul class="list">
+            <li>
+                <a href="/NguoiDung/ChitietNV/@ViewBag.MaNV">Thông tin tài khoản</a>
+            </li>
+            <li>
+                <a href="/NguoiDung/CCNhanVien/@ViewBag.MaNV">Xem chấm công</a>
+            </li>
+            <li>
+                <a href="/NguoiDung/PTNhanVien/@ViewBag.MaNV">Xem phụ trội</a>
+            </li>
+            <li>
+                <a href="/NguoiDung/KTKLNhanVien/@ViewBag.MaNV">Khen thưởng - Kỷ luật</a>
+            </li>
+            <li>
+                <a href="/NguoiDung/LuongNhanVien/@ViewBag.MaNV">Lương</a>
+            </li>
+            <li>
+                <a href="/NguoiDung/DoiMatKhau/@ViewBag.Taikhoan">Đổi mật khẩu</a>
+            </li>
+            <li>
+                <a href="@Url.Action("DangXuat", "NguoiDung")">Đăng xuất</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div style="margin-left:230px">
+    <h2 style="text-align:center;">Xem lương tháng @Model.Thang năm @Model.Nam</h2>
+    <hr />
+    <div class="row">
+        <a style="font-weight:bold; margin-left:50px">Mã NV: @Html.DisplayFor(model => model.MaNV) - Họ tên: @Html.DisplayFor(model => model.NhanVien.HoTen)</a>
+        <a style="font-weight:bold; margin-left:250px"> Tháng: @Model.Thang/@Model.Nam</a>
+    </div>
+    <table style="width:660px" border="1">
+        <tr style="text-align:center; font-weight:bold">
+            <td>STT</td>
+            <td>Thông tin</td>
+            <td>Số lương</td>
+            <td>Giá trị</td>
+        </tr>
+        <tr>
+            <td style="text-align:center">1</td>
+            <td> Số ngày công</td>
+            <td style="text-align:center">@Html.DisplayFor(model => model.Songaycong) ngày</td>
+            @{
+                if (Model.NhanVien.TinhTrang == "Thử việc")
+                {
+                    decimal lg = Model.NhanVien.QuyetDinhTD.ChucVu.MucLuongThuViec;
+                    var giatri = Model.Songaycong * lg;
+                    <td style="text-align:right">@String.Format("{0:0,0}", giatri) VNĐ</td>
+                }
+                else
+                {
+                    decimal lg = Model.NhanVien.QuyetDinhTD.ChucVu.MucLuongCT;
+                    var giatri = Model.Songaycong * lg;
+                    <td style="text-align:right">@String.Format("{0:0,0}", giatri) VNĐ</td>
+                }
+            }
+        </tr>
+        <tr>
+            <td style="text-align:center">2</td>
+            <td> Số lần vào trễ - ra sớm</td>
+            <td style="text-align:center">@Html.DisplayFor(model => model.Solantresom) lần</td>
+            <td style="text-align:right">-@String.Format("{0:0,0}", (Model.Solantresom) * 50000) VNĐ</td>
+        </tr>
+        <tr>
+            <td style="text-align:center">3</td>
+            <td> Số ngày nghỉ (có phép)</td>
+            <td style="text-align:center">@Html.DisplayFor(model => model.Songaynghicop) ngày</td>
+            <td style="text-align:right">-@String.Format("{0:0,0}", (Model.Songaynghicop) * 0) VNĐ</td>
+        </tr>
+        <tr>
+            <td style="text-align:center">4</td>
+            <td> Số ngày nghỉ (không phép)</td>
+            <td style="text-align:center">@Html.DisplayFor(model => model.Songaynghikp) ngày</td>
+            <td style="text-align:right">-@String.Format("{0:0,0}", (Model.Songaynghikp) * 200000) VNĐ</td>
+        </tr>
+        <tr>
+            <td style="text-align:center">5</td>
+            <td> Số giờ phụ trội</td>
+            <td style="text-align:center">@Html.DisplayFor(model => model.Sogiopt) giờ</td>
+            @{
+                if (Model.NhanVien.TinhTrang == "Thử việc")
+                {
+                    decimal lg = Model.NhanVien.QuyetDinhTD.ChucVu.MucLuongThuViec;
+                    var giatri = Model.Sogiopt * lg / 8 * 15 / 10;
+                    <td style="text-align:right">@String.Format("{0:0,0}", giatri) VNĐ</td>
+                }
+                else
+                {
+                    decimal lg = Model.NhanVien.QuyetDinhTD.ChucVu.MucLuongCT;
+                    var giatri = Model.Sogiopt * lg / 8 * 15 / 10;
+                    <td style="text-align:right">@String.Format("{0:0,0}", giatri) VNĐ</td>
+                }
+            }
+        </tr>
+        <tr>
+            <td style="text-align:center">6</td>
+            <td> Khen thưởng</td>
+            <td></td>
+            <td style="text-align:right">@Html.DisplayFor(model => model.Khenthuong) VNĐ</td>
+        </tr>
+        <tr>
+            <td style="text-align:center">7</td>
+            <td> Kỷ luật</td>
+            <td></td>
+            <td style="text-align:right">-@Html.DisplayFor(model => model.Kyluat) VNĐ</td>
+        </tr>
+        <tr style="color:red; font-weight:bold;text-align:right">
+            <td colspan="3"> Tổng tiền lương:</td>
+            <td>@String.Format("{0:0,0}", Model.GiaTri) VNĐ </td>
+        </tr>
+    </table>
+    <p>
+        <a href="@Url.Action("XuatBangLuong", new { id = Model.MaLuong })"> Xuất bảng lương </a> |
+        <a href="~/NguoiDung/LuongNhanVien/@ViewBag.MaNV">Trở về</a>
+    </p>
+</div>
+

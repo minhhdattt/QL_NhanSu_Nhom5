@@ -1,0 +1,40 @@
+﻿@model QL_NhanSu.Models.HopDongTD
+
+@{
+    ViewBag.Title = "GiahanHopDong";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section Header{
+    <div class="page-header">
+        <h1> Gia hạn hợp đồng</h1>
+    </div>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.MaHD)
+
+        <div class="form-group">
+            <label class="control-label col-md-3">Thời hạn: </label>
+            <div class="col-md-6">
+                <input type="number" name="Thoihan" /> tháng
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Lưu" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Trở về", "HopDong")
+</div>

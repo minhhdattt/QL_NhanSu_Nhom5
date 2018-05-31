@@ -1,0 +1,60 @@
+﻿@using QL_NhanSu.Models
+@{
+    ViewBag.Title = "Trang chủ người dùng";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div id="sidebar" style="float:left; margin-left:0;">
+    <div class="box">
+        <h3>Chào @ViewBag.Taikhoan</h3>
+        @{
+            TaiKhoan tk = (TaiKhoan)Session["Taikhoan"];
+            if (tk.MaNV != null)
+            {
+                <ul class="list">
+                    <li>
+                        <a href="/NguoiDung/ChitietNV/@tk.MaNV">Thông tin tài khoản</a>
+                    </li>
+                    <li>
+                        <a href="/NguoiDung/CCNhanVien/@tk.MaNV">Xem chấm công</a>
+                    </li>
+                    <li>
+                        <a href="/NguoiDung/PTNhanVien/@tk.MaNV">Xem phụ trội</a>
+                    </li>
+                    <li>
+                        <a href="/NguoiDung/KTKLNhanVien/@tk.MaNV">Khen thưởng - Kỷ luật</a>
+                    </li>
+                    <li>
+                        <a href="/NguoiDung/LuongNhanVien/@tk.MaNV">Lương</a>
+                    </li>
+                    <li>
+                        <a href="/NguoiDung/DoiMatKhau/@tk.Username">Đổi mật khẩu</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("DangXuat", "NguoiDung")">Đăng xuất</a>
+                    </li>
+                </ul>
+            }
+            else
+            {
+                <ul class="list">
+                    <li>
+                        <a href="/NguoiDung/ChitietUV/@tk.MaUV">Thông tin tài khoản</a>
+                    </li>
+                    <li>
+                        <a href="/NguoiDung/DanhSachQD/@tk.MaUV">Quyết định đã nộp</a>
+                    </li>
+                    <li>
+                        <a href="/NguoiDung/DoiMatKhau/@tk.Username">Đổi mật khẩu</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("DangXuat", "NguoiDung")">Đăng xuất</a>
+                    </li>
+                </ul>
+            }
+        }
+    </div>
+</div>
+<div style="margin-left:230px">
+    <h1>Trang chủ người dùng</h1>
+</div>

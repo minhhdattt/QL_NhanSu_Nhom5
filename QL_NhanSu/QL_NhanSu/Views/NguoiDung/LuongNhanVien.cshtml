@@ -1,0 +1,90 @@
+﻿@using QL_NhanSu.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<Luong>
+
+@{
+    ViewBag.Title = "Lương";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div id="sidebar" style="float:left; margin-left:0;">
+    <div class="box">
+        <h3>Chào @ViewBag.Taikhoan</h3>
+        <ul class="list">
+            <li>
+                <a href="/NguoiDung/ChitietNV/@ViewBag.MaNV">Thông tin tài khoản</a>
+            </li>
+            <li>
+                <a href="/NguoiDung/CCNhanVien/@ViewBag.MaNV">Xem chấm công</a>
+            </li>
+            <li>
+                <a href="/NguoiDung/PTNhanVien/@ViewBag.MaNV">Xem phụ trội</a>
+            </li>
+            <li>
+                <a href="/NguoiDung/KTKLNhanVien/@ViewBag.MaNV">Khen thưởng - Kỷ luật</a>
+            </li>
+            <li>
+                <a href="/NguoiDung/LuongNhanVien/@ViewBag.MaNV">Lương</a>
+            </li>
+            <li>
+                <a href="/NguoiDung/DoiMatKhau/@ViewBag.Taikhoan">Đổi mật khẩu</a>
+            </li>
+            <li>
+                <a href="@Url.Action("DangXuat", "NguoiDung")">Đăng xuất</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div style="margin-left:230px">
+    <h2 style="text-align:center;">Xem lương</h2>
+    <hr />
+    @*<div class="row">
+        @using (@Html.BeginForm("LuongNhanVien", "NguoiDung", FormMethod.Get, new { id = ViewBag.MaNV }))
+        {
+            <div class="input-group">
+                <input type="number" name="thang" class="form-control" placeholder="Từ khóa" value="@ViewBag.searchStr" />
+            </div>
+        }
+    </div>
+    <br />*@
+    <table class="table">
+        <tr>
+            <th>
+                Tháng
+            </th>
+            <th>
+                Tổng lương
+            </th>
+            <th>
+                Tình trạng
+            </th>
+            <th>
+                Tác vụ
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Thang/@item.Nam
+                </td>
+                <td>
+                    @String.Format("{0:0,0}", item.GiaTri) VNĐ
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TinhTrang)
+                </td>
+                <td>
+                    @Html.ActionLink("Chitiết", "ChitietLuong", new { id = item.MaLuong })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <div>
+        <ul class="pagination">
+            @Html.PagedListPager(Model, page => Url.Action("LuongNhanVien", new { page = page }))
+        </ul>
+    </div>
+</div>
